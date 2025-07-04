@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>🎬 هوش مصنوعی سازنده ویدیو</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Vazirmatn', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00c9ff;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"] {
+      width: 90%;
+      max-width: 500px;
+      padding: 15px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #00c9ff;
+      color: #000;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #92fe9d;
+    }
+
+    #result {
+      margin-top: 40px;
+    }
+
+    video {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px #000;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: #ccc;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🤖 هوش مصنوعی ذهن‌برتر</h1>
+  <p>جمله‌ای بنویس تا فیلمی از آن ساخته شود!</p>
+
+  <input type="text" id="prompt" placeholder="مثلاً: یک ربات در حال رقص در فضا">
+  <br>
+  <button onclick="generateVideo()">بساز!</button>
+
+  <div id="result"></div>
+
+  <footer>© طراحی‌شده توسط ذهن‌برتر | نسخه آزمایشی</footer>
+
+  <script>
+    async function generateVideo() {
+      const prompt = document.getElementById("prompt").value.trim();
+      const result = document.getElementById("result");
+
+      if (!prompt) {
+        result.innerHTML = "<p>⚠️ لطفاً یک جمله وارد کن.</p>";
+        return;
+      }
+
+      result.innerHTML = "⏳ در حال ساخت فیلم... لطفاً صبر کنید.";
+
+      // شبیه‌سازی نمایش ویدیو
+      setTimeout(() => {
+        result.innerHTML = `
+          <p>🎬 فیلم ساخته‌شده برای: <strong>${prompt}</strong></p>
+          <video controls autoplay loop>
+            <source src="https://media.githubusercontent.com/media/runwayml/video-samples/main/gen-2/rocket-dance.mp4" type="video/mp4">
+            مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+          </video>
+        `;
+      }, 2000);
+
+      // نسخه واقعی اتصال به API (در آینده قابل جایگزینی است)
+      /*
+      const apiKey = "کلید_API_شخصی_تو";
+      const response = await fetch("https://api.runwayml.com/v1/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+          length_seconds: 15,
+          model: "gen-2"
+        })
+      });
+
+      const data = await response.json();
+      if (data.video_url) {
+        result.innerHTML = `
+          <video controls autoplay loop>
+            <source src="${data.video_url}" type="video/mp4">
+          </video>
+        `;
+      } else {
+        result.innerHTML = "❌ خطا در دریافت ویدیو.";
+      }
+      */
+    }
+  </script>
+</body>
+</html>
